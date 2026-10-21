@@ -6,6 +6,37 @@
     <title>DANOverkill's Weather-App</title>
   </head>
   <body>
-    <div id="content"></div>
+    <header>
+      <h1 class="siteName">DANOverkill's Weather App</h1>
+      <form id="switches">
+        <fieldset class="switchName" for="unit">
+          <legend>Choose your prefered unit</legend>
+          <label class="switch">
+            <legend class="sliderLable">°C</legend>
+            <legend class="sliderLable">°F</legend>
+            <input type="checkbox" id="unit" />
+            <span class="slider round"></span>
+          </label>
+        </fieldset>
+
+        <fieldset class="switchName" for="geoLoc">
+          <legend>Turn on Geo Location</legend>
+          <label class="switch">
+            <legend class="sliderLable">Off</legend>
+            <legend class="sliderLable">ON</legend>
+            <input type="checkbox" id="geoLoc" />
+            <span class="slider round"></span>
+          </label>
+        </fieldset>
+      </form>
+      <form id="searchForm">
+        <fieldset class="searchBar" for="searchBar">
+          <legend>Seach your City</legend>
+          <input type="text" id="searchBar" placeholder="Search..." />
+          <button id="submitSearch" class="button">Submit</button>
+        </fieldset>
+      </form>
+    </header>
+    <div id="mainContainer">display API response dynamically</div>
   </body>
 </html>
