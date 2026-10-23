@@ -1,5 +1,6 @@
 //Imports
 import "./style.css";
+import { drawDisplay } from "./uiDraw.js";
 import { weatherFetch } from "./weatherFetch.js";
 
 console.log("Webpack template running!");
@@ -9,10 +10,13 @@ const searchForm = document.querySelector("#searchForm");
 const searchInput = document.querySelector("#searchBar");
 const unitswitch = document.querySelector("#unit");
 
-weatherFetch("metric");
+(async () => {
+  const weatherData = await weatherFetch("metric");
+  drawDisplay(weatherData);
+})();
 
 //Event Listeners
-searchForm.addEventListener("submit", (event) => {
+searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   let unit = "metric";
   if (unitswitch.checked) {
@@ -20,15 +24,19 @@ searchForm.addEventListener("submit", (event) => {
   }
   event.preventDefault();
   console.log(unit);
-  weatherFetch(unit, searchInput.value);
+  const weatherData = await weatherFetch(unit, searchInput.value);
+  console.log(weatherData.resolvedAddress);
+  drawDisplay(weatherData);
 });
 
-unitswitch.addEventListener("change", (event) => {
+unitswitch.addEventListener("change", async (event) => {
   event.preventDefault();
   let unit = "metric";
   if (event.currentTarget.checked) {
     unit = "us";
   }
   console.log(unit);
-  weatherFetch(unit, searchInput.value);
+  const weatherData = await weatherFetch(unit, searchInput.value);
+  console.log(weatherData.resolvedAddress);
+  drawDisplay(weatherData);
 });

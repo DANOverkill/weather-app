@@ -12,6 +12,7 @@ async function weatherFetch(unit, query) {
       const responseData = await response.json();
 
       console.log(responseData);
+      return responseData;
     } catch (error) {
       console.log(error);
     }
@@ -33,6 +34,7 @@ async function weatherFetch(unit, query) {
 
       const responseData = await response.json();
       console.log(responseData);
+      return responseData;
     } catch (error) {
       console.log(error);
     }

@@ -9,9 +9,9 @@
     <header>
       <h1 class="siteName">DANOverkill's Weather App</h1>
       <form id="searchForm">
-        <fieldset class="switchName" for="unit">
+        <fieldset class="switchName">
           <legend>Choose your prefered unit</legend>
-          <label class="switch">
+          <label class="switch" for="unit">
             <legend class="sliderLable">°C</legend>
             <legend class="sliderLable">°F</legend>
             <input type="checkbox" id="unit" />
@@ -19,9 +19,9 @@
           </label>
         </fieldset>
 
-        <fieldset class="switchName" for="geoLoc">
+        <fieldset class="switchName" >
           <legend>Turn on Geo Location</legend>
-          <label class="switch">
+          <label class="switch" for="geoLoc">
             <legend class="sliderLable">Off</legend>
             <legend class="sliderLable">ON</legend>
             <input type="checkbox" id="geoLoc" />
@@ -30,7 +30,7 @@
         </fieldset>
 
       <form id="searchForm">
-        <fieldset class="searchBar" for="searchBar">
+        <fieldset class="searchBar" >
           <legend>Seach your City</legend>
           <input type="text" id="searchBar" placeholder="Search..." />
           <button id="submitSearch" class="button">Submit</button>
