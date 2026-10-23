@@ -1,8 +1,13 @@
-async function weatherFetch(query) {
+async function weatherFetch(unit, query) {
   if (!query) {
+    const params = new URLSearchParams({
+      location: "London",
+      unit: unit,
+      key: "PY8BDEZ4HAEL4Z2PGYM8QDU9Y",
+    });
     try {
       const response = await fetch(
-        "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/London%2CUK?unitGroup=metric&key=PY8BDEZ4HAEL4Z2PGYM8QDU9Y",
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${params.get("location")}?unitGroup=${params.get("unit")}&key=${params.get("key")}`,
       );
       const responseData = await response.json();
 
@@ -14,7 +19,7 @@ async function weatherFetch(query) {
     try {
       const params = new URLSearchParams({
         location: query,
-        unit: "metric",
+        unit: unit,
         key: "PY8BDEZ4HAEL4Z2PGYM8QDU9Y",
       });
       console.log(params.toString());
