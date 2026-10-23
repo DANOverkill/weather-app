@@ -1,6 +1,6 @@
 //Imports
 import "./style.css";
-import { drawDisplay } from "./uiDraw.js";
+import { drawDisplay } from "./drawDisplay.js";
 import { weatherFetch } from "./weatherFetch.js";
 
 console.log("Webpack template running!");
