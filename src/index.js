@@ -2,6 +2,8 @@
 import "./style.css";
 import { drawDisplay } from "./drawDisplay.js";
 import { weatherFetch } from "./weatherFetch.js";
+import { geoLoc } from "./util/geoLoc.js";
+import { cityName } from "./util/geoApifi.js";
 
 console.log("Webpack template running!");
 
@@ -13,6 +15,12 @@ const unitswitch = document.querySelector("#unit");
 (async () => {
   const weatherData = await weatherFetch("metric");
   drawDisplay(weatherData);
+  const myCurrentLoc = await geoLoc();
+  console.log(myCurrentLoc);
+  console.log(
+    (await cityName(myCurrentLoc.latitude, myCurrentLoc.longitude)).results[0]
+      .city,
+  );
 })();
 
 //Event Listeners
