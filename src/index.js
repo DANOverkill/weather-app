@@ -11,16 +11,11 @@ console.log("Webpack template running!");
 const searchForm = document.querySelector("#searchForm");
 const searchInput = document.querySelector("#searchBar");
 const unitswitch = document.querySelector("#unit");
+const geoLocSwitch = document.querySelector("#geoLoc");
 
 (async () => {
   const weatherData = await weatherFetch("metric");
   drawDisplay(weatherData);
-  const myCurrentLoc = await geoLoc();
-  console.log(myCurrentLoc);
-  console.log(
-    (await cityName(myCurrentLoc.latitude, myCurrentLoc.longitude)).results[0]
-      .city,
-  );
 })();
 
 //Event Listeners
@@ -32,6 +27,7 @@ searchForm.addEventListener("submit", async (event) => {
   }
   event.preventDefault();
   console.log(unit);
+  geoLocSwitch.checked = false;
   const weatherData = await weatherFetch(unit, searchInput.value);
   console.log(weatherData.resolvedAddress);
   drawDisplay(weatherData);
@@ -47,4 +43,29 @@ unitswitch.addEventListener("change", async (event) => {
   const weatherData = await weatherFetch(unit, searchInput.value);
   console.log(weatherData.resolvedAddress);
   drawDisplay(weatherData);
+});
+
+geoLocSwitch.addEventListener("change", async (event) => {
+  if (event.currentTarget.checked) {
+    event.preventDefault();
+    const myCurrentLoc = await geoLoc();
+    const locationData = await cityName(
+      myCurrentLoc.latitude,
+      myCurrentLoc.longitude,
+    );
+
+    const myCurrentCityName = locationData.results[0].city;
+    const myCurrentCountryName = locationData.results[0].country;
+
+    console.log(myCurrentCityName, myCurrentCountryName);
+
+    const myLocationSearchValue = `${myCurrentCityName} ${myCurrentCountryName}`;
+
+    const weatherData = await weatherFetch("metric", myLocationSearchValue);
+    searchInput.value = myLocationSearchValue;
+    drawDisplay(weatherData);
+  } else {
+    const weatherData = await weatherFetch("metric", searchInput.value);
+    drawDisplay(weatherData);
+  }
 });
