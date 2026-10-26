@@ -21,11 +21,12 @@ const geoLocSwitch = document.querySelector("#geoLoc");
 //Event Listeners
 searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+
   let unit = "metric";
   if (unitswitch.checked) {
     unit = "us";
   }
-  event.preventDefault();
+
   console.log(unit);
   geoLocSwitch.checked = false;
   const weatherData = await weatherFetch(unit, searchInput.value);
