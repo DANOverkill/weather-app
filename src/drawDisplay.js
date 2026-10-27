@@ -17,13 +17,22 @@ const drawDisplay = async (data, unit) => {
   const loadIcon = async (name) => {
     try {
       const icon = await import(`./assets/icons/3rd Set - Color/${name}.svg`);
-      console.log(icon.days);
       return icon.default;
     } catch (error) {
       console.warn(`Icon "${name}" not found, using fallback.`);
       console.log(error);
       return "";
     }
+  };
+
+  const dayName = (i) => {
+    const date = new Date(data.days[i].datetimeEpoch * 1000);
+
+    const dayName = date.toLocaleDateString("en-CA", {
+      weekday: "short",
+      timeZone: data.timezone,
+    });
+    return dayName;
   };
 
   // Update UI
@@ -35,7 +44,7 @@ const drawDisplay = async (data, unit) => {
         <div id="Temp">Temp: ${data.currentConditions.temp} ${tempUnitSymbol}</div>
         <div id="Feels Like">Feels Like: ${data.currentConditions.feelslike} ${tempUnitSymbol}</div>
         <div id="weatherIcon-container">
-          <img src="${await loadIcon(data.days[0].icon)}" id="weatherIcon" class="icons" width="100" height="100"/>
+          <img src="${await loadIcon(data.currentConditions.icon)}" id="weatherIcon" class="icons" width="100" height="100"/>
         </div>
         <div id="windSpeed">Wind Speed: ${data.currentConditions.windspeed} ${speedUnitSymbol}</div>
         <div id="humidity">Humidity: ${data.currentConditions.humidity}</div>
@@ -77,21 +86,24 @@ const drawDisplay = async (data, unit) => {
       <!-- extra boxes for future daily forcast   -->
       <div class="display-box" id="nextDayTemperatures">
         <div class="nextDayBox" id="nextDay-01">
+          <div id="dayName">${dayName(1)}</div>
           <div id="weatherIcon-container">
             <img src="${await loadIcon(data.days[1].icon)}" id="weatherIcon" class="icons" width="45" height="45"/>
           </div>
-          <div id="Temp">${data.days[1].tempmin}/${data.days[1].tempmax}</div>
+          <div id="Temp">${data.days[1].tempmin}/${data.days[1].tempmax} ${tempUnitSymbol}</div>
         </div>
         <div class="nextDayBox" id="nextDay-02">
+          <div id="dayName">${dayName(2)}</div>
           <div id="weatherIcon-container">
             <img src="${await loadIcon(data.days[2].icon)}" id="weatherIcon" class="icons" width="45" height="45"/>
           </div>
-          <div id="Temp">${data.days[2].tempmin}/${data.days[2].tempmax}</div>
+          <div id="Temp">${data.days[2].tempmin}/${data.days[2].tempmax} ${tempUnitSymbol}</div>
         </div>
         <div class="nextDayBox" id="nextDay-03">
+          <div id="dayName">${dayName(3)}</div>
           <div id="weatherIcon-container">
             <img src="${await loadIcon(data.days[3].icon)}" id="weatherIcon" class="icons" width="45" height="45"/>
-          <div id="Temp">${data.days[3].tempmin}/${data.days[3].tempmax}</div>
+          <div id="Temp">${data.days[3].tempmin}/${data.days[3].tempmax} ${tempUnitSymbol}</div>
           </div>
         </div>
       </div>
