@@ -36,7 +36,13 @@ const drawDisplay = async (data, unit) => {
   };
 
   const drawHourForecast = async (data) => {
-    let currentHour = Number(data.currentConditions.datetime.split(":")[0]);
+    let currentHour = Number(
+      new Date().toLocaleString("en-US", {
+        timeZone: data.timezone,
+        hour: "2-digit",
+        hour12: false,
+      }),
+    );
 
     let nextFiveHours = [];
 
@@ -51,7 +57,7 @@ const drawDisplay = async (data, unit) => {
     const htmlElements = await Promise.all(
       nextFiveHours.map(async (forcastHour) => {
         let htmlElement = `<div class="nextHourBox" id="nextHour-${forcastHour.hour}">
-            <div id="hours">hr: ${(currentHour + forcastHour.hour) % 24}</div>
+            <div id="hours">hr: ${forcastHour.hour}:00</div>
             <div id="weatherIcon-container">
               <img src="${await loadIcon(data.days[forcastHour.day].hours[forcastHour.hour].icon)}" id="weatherIcon" class="icons" width="45" height="45"/>
             </div>
