@@ -76,21 +76,21 @@ const drawDisplay = async (data, unit) => {
       <!-- extra boxes for future daily forcast   -->
       <div class="display-box" id="nextDayTemperatures">
         <div class="nextDayBox" id="nextDay-01">
-          <div id="Temp">--</div>
           <div id="weatherIcon-container">
-            <img src="#" id="weatherIcon" class="icons" />
+            <img src="${await loadIcon(data.days[1].icon)}" id="weatherIcon" class="icons" width="45" height="45"/>
           </div>
+          <div id="Temp">${data.days[1].tempmin}/${data.days[1].tempmax}</div>
         </div>
         <div class="nextDayBox" id="nextDay-02">
-          <div id="Temp">--</div>
           <div id="weatherIcon-container">
-            <img src="#" id="weatherIcon" class="icons" />
+            <img src="${await loadIcon(data.days[2].icon)}" id="weatherIcon" class="icons" width="45" height="45"/>
           </div>
+          <div id="Temp">${data.days[2].tempmin}/${data.days[2].tempmax}</div>
         </div>
         <div class="nextDayBox" id="nextDay-03">
-          <div id="Temp">--</div>
           <div id="weatherIcon-container">
-            <img src="#" id="weatherIcon" class="icons" />
+            <img src="${await loadIcon(data.days[3].icon)}" id="weatherIcon" class="icons" width="45" height="45"/>
+          <div id="Temp">${data.days[3].tempmin}/${data.days[3].tempmax}</div>
           </div>
         </div>
       </div>
