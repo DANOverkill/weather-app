@@ -13,15 +13,17 @@ const drawDisplay = async (data, unit) => {
 
   const unitSymbol = chosenUnit(unit);
 
-  // const currentConditionsIcon = (
-  //   await import(
-  //     `./assets/icons/3rd Set - Color/${data.currentConditions.icon}.svg`
-  //   )
-  // ).default;
-  const currentConditionsIcon = await import(
-    `./assets/icons/3rd Set - Color/${data.days[0].icon}.svg`
-  );
-  console.log(currentConditionsIcon);
+  const loadIcon = async (name) => {
+    try {
+      const icon = await import(`./assets/icons/3rd Set - Color/${name}.svg`);
+      console.log(icon.days);
+      return icon.default;
+    } catch (error) {
+      console.warn(`Icon "${name}" not found, using fallback.`);
+      console.log(error);
+      return "";
+    }
+  };
 
   // Update UI
   mainContainer.innerHTML = `
@@ -32,7 +34,7 @@ const drawDisplay = async (data, unit) => {
         <div id="Temp">${data.currentConditions.temp}</div>
         <div id="tempUnit">${unitSymbol}</div>
         <div id="weatherIcon-container">
-          <img src="${currentConditionsIcon.default}" id="weatherIcon" class="icons" width="100" height="100"/>
+          <img src="${await loadIcon(data.days[0].icon)}" id="weatherIcon" class="icons" width="100" height="100"/>
         </div>
         <div id="windSpeed">Wind Speed: ${data.currentConditions.windspeed}</div>
         <div id="humidity">Humidity: ${data.currentConditions.humidity}</div>
