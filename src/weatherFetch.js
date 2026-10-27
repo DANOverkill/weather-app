@@ -1,7 +1,7 @@
 async function weatherFetch(unit, query) {
   if (!query) {
     const params = new URLSearchParams({
-      location: "London",
+      location: "Ottawa Canada",
       unit: unit,
       key: "PY8BDEZ4HAEL4Z2PGYM8QDU9Y",
     });

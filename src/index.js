@@ -14,8 +14,16 @@ const unitswitch = document.querySelector("#unit");
 const geoLocSwitch = document.querySelector("#geoLoc");
 
 (async () => {
-  const weatherData = await weatherFetch("metric");
-  drawDisplay(weatherData);
+  if (searchInput.value === "") {
+    return;
+  } else {
+    const weatherData = await weatherFetch("metric", searchInput.value);
+    let unit = "metric";
+    if (unitswitch.checked) {
+      unit = "us";
+    }
+    drawDisplay(weatherData, unit);
+  }
 })();
 
 //Event Listeners
@@ -31,7 +39,7 @@ searchForm.addEventListener("submit", async (event) => {
   geoLocSwitch.checked = false;
   const weatherData = await weatherFetch(unit, searchInput.value);
   console.log(weatherData.resolvedAddress);
-  drawDisplay(weatherData);
+  drawDisplay(weatherData, unit);
 });
 
 unitswitch.addEventListener("change", async (event) => {
@@ -43,10 +51,14 @@ unitswitch.addEventListener("change", async (event) => {
   console.log(unit);
   const weatherData = await weatherFetch(unit, searchInput.value);
   console.log(weatherData.resolvedAddress);
-  drawDisplay(weatherData);
+  drawDisplay(weatherData, unit);
 });
 
 geoLocSwitch.addEventListener("change", async (event) => {
+  let unit = "metric";
+  if (unitswitch.currentTarget.checked) {
+    unit = "us";
+  }
   if (event.currentTarget.checked) {
     event.preventDefault();
     const myCurrentLoc = await geoLoc();
@@ -64,9 +76,9 @@ geoLocSwitch.addEventListener("change", async (event) => {
 
     const weatherData = await weatherFetch("metric", myLocationSearchValue);
     searchInput.value = myLocationSearchValue;
-    drawDisplay(weatherData);
+    drawDisplay(weatherData, unit);
   } else {
     const weatherData = await weatherFetch("metric", searchInput.value);
-    drawDisplay(weatherData);
+    drawDisplay(weatherData, unit);
   }
 });
