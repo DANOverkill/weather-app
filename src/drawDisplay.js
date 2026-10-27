@@ -35,6 +35,34 @@ const drawDisplay = async (data, unit) => {
     return dayName;
   };
 
+  const drawHourForecast = async (data) => {
+    let currentHour = Number(data.currentConditions.datetime.split(":")[0]);
+
+    let nextFiveHours = [];
+
+    for (let i = 1; i <= 5; i++) {
+      if (currentHour + i <= 23) {
+        nextFiveHours.push({ hour: currentHour + i, day: 0 });
+      } else {
+        nextFiveHours.push({ hour: (currentHour + i) % 24, day: 1 });
+      }
+    }
+
+    const htmlElements = await Promise.all(
+      nextFiveHours.map(async (forcastHour) => {
+        let htmlElement = `<div class="nextHourBox" id="nextHour-${forcastHour.hour}">
+            <div id="hours">hr: ${(currentHour + forcastHour.hour) % 24}</div>
+            <div id="weatherIcon-container">
+              <img src="${await loadIcon(data.days[forcastHour.day].hours[forcastHour.hour].icon)}" id="weatherIcon" class="icons" width="45" height="45"/>
+            </div>
+            <div id="Temp">${data.days[forcastHour.day].hours[forcastHour.hour].temp} ${tempUnitSymbol}</div>
+          </div>`;
+        return htmlElement;
+      }),
+    );
+    return htmlElements.join("");
+  };
+
   // Update UI
   mainContainer.innerHTML = `
         <div id="mainContainer">
@@ -52,36 +80,7 @@ const drawDisplay = async (data, unit) => {
       </div>
       <!-- extra boxes for future hourly forcast -->
       <div class="display-box" id="nextHoursTemperaturs">
-        <div class="nextHourBox" id="nextHour-01">
-          <div id="Temp">--</div>
-          <div id="weatherIcon-container">
-            <img src="#" id="weatherIcon" class="icons" />
-          </div>
-        </div>
-        <div class="nextHourBox" id="nextHour-02">
-          <div id="Temp">--</div>
-          <div id="weatherIcon-container">
-            <img src="#" id="weatherIcon" class="icons" />
-          </div>
-        </div>
-        <div class="nextHourBox" id="nextHour-03">
-          <div id="Temp">--</div>
-          <div id="weatherIcon-container">
-            <img src="#" id="weatherIcon" class="icons" />
-          </div>
-        </div>
-        <div class="nextHourBox" id="nextHour-04">
-          <div id="Temp">--</div>
-          <div id="weatherIcon-container">
-            <img src="#" id="weatherIcon" class="icons" />
-          </div>
-        </div>
-        <div class="nextHourBox" id="nextHour-05">
-          <div id="Temp">--</div>
-          <div id="weatherIcon-container">
-            <img src="#" id="weatherIcon" class="icons" />
-          </div>
-        </div>
+        ${await drawHourForecast(data)}
       </div>
       <!-- extra boxes for future daily forcast   -->
       <div class="display-box" id="nextDayTemperatures">
