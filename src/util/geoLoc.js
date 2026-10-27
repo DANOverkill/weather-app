@@ -31,7 +31,15 @@ const geoLoc = () => {
         resolve({ latitude, longitude });
       },
       (error) => {
-        reject(error);
+        console.error("Geolocation failed!");
+        console.error("Error code:", error.code);
+        console.error("Error message:", error.message);
+        console.error("Secure context:", window.isSecureContext);
+        reject(
+          new Error(
+            `Geolocation failed (code ${error.code}): ${error.message}`,
+          ),
+        );
       },
     );
   });
