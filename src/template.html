@@ -36,6 +36,72 @@
         </fieldset>
       </form>
     </header>
-    <div id="mainContainer">display API response dynamically</div>
+    <div id="mainContainer">
+      <!-- main section where current temp is displaied -->
+      <div class="display-box" id="currentTemp">
+        <div id="Temp">--</div>
+        <div id="tempUnit">°C</div>
+        <div id="weatherIcon-container">
+          <img src="#" id="weatherIcon" class="icons" />
+        </div>
+        <div id="windSpeed">--</div>
+        <div id="humidity">--</div>
+        <div id="uvIndex">--</div>
+      </div>
+      <!-- extra boxes for future hourly forcast -->
+      <div class="display-box" id="nextHoursTemperaturs">
+        <div class="nextHourBox" id="nextHour-01">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+        <div class="nextHourBox" id="nextHour-02">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+        <div class="nextHourBox" id="nextHour-03">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+        <div class="nextHourBox" id="nextHour-04">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+        <div class="nextHourBox" id="nextHour-05">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+      </div>
+      <!-- extra boxes for future daily forcast   -->
+      <div class="display-box" id="nextDayTemperatures">
+        <div class="nextDayBox" id="nextDay-01">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+        <div class="nextDayBox" id="nextDay-02">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+        <div class="nextDayBox" id="nextDay-03">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
