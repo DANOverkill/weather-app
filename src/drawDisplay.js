@@ -3,7 +3,7 @@ const drawDisplay = async (data, unit) => {
   const mainContainer = document.querySelector("#mainContainer");
 
   // switch for Unit Display
-  const chosenUnit = (unit) => {
+  const chosenTemUnit = (unit) => {
     if (unit === "metric") {
       return "°C";
     } else {
@@ -11,7 +11,8 @@ const drawDisplay = async (data, unit) => {
     }
   };
 
-  const unitSymbol = chosenUnit(unit);
+  const tempUnitSymbol = chosenTemUnit(unit);
+  const speedUnitSymbol = tempUnitSymbol === "°C" ? "km/h" : "m/h";
 
   const loadIcon = async (name) => {
     try {
@@ -31,12 +32,12 @@ const drawDisplay = async (data, unit) => {
       <!-- main section where current temp is displaied -->
       <div class="display-box" id="currentTemp">
         <div id="location">${data.resolvedAddress}</div>
-        <div id="Temp">${data.currentConditions.temp}</div>
-        <div id="tempUnit">${unitSymbol}</div>
+        <div id="Temp">Temp: ${data.currentConditions.temp} ${tempUnitSymbol}</div>
+        <div id="Feels Like">Feels Like: ${data.currentConditions.feelslike} ${tempUnitSymbol}</div>
         <div id="weatherIcon-container">
           <img src="${await loadIcon(data.days[0].icon)}" id="weatherIcon" class="icons" width="100" height="100"/>
         </div>
-        <div id="windSpeed">Wind Speed: ${data.currentConditions.windspeed}</div>
+        <div id="windSpeed">Wind Speed: ${data.currentConditions.windspeed} ${speedUnitSymbol}</div>
         <div id="humidity">Humidity: ${data.currentConditions.humidity}</div>
         <div id="uvIndex">UV: ${data.currentConditions.uvindex}</div>
       </div>
