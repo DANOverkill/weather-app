@@ -1,60 +1,87 @@
-# Webpack Template
+# DANOverkill Weather App
 
-A starter template for JavaScript projects using Webpack.
+A weather application built as part of [The Odin Project](https://www.theodinproject.com/) curriculum, focusing on asynchronous JavaScript and working with APIs.
 
-## Included
+**Live Demo:** [DANOverkill Weather App](https://danoverkill.github.io/weather-app/)
 
-- Webpack
-- webpack-dev-server
-- HTML loading
-- CSS loading
-- ES Modules support
-- ESLint
-- Prettier
-- Development and production scripts
+### APIs Used
+
+- **Visual Crossing Weather API** — Retrieves weather data and forecasts.
+- **Browser Geolocation API** — Allows users to request their current location.
+- **Geoapify API** — Converts geographic coordinates into a city and country through reverse geocoding.
+
+## Features
+
+- Search for weather by location.
+- Switch between Celsius (°C) and Fahrenheit (°F).
+- Enable or disable geolocation.
+- View detailed current weather conditions.
+- View the forecast for the next five hours.
+- View the forecast for the next three days.
 
 ## Setup
 
 Clone the repository:
 
 ```bash
-git clone <repository-url>
-cd <project-directory>
+git clone https://github.com/DANOverkill/weather-app.git
+cd weather-app
 npm install
 ```
 
-Start the development server:
+### Development
+
+Start the development server and open the app in your browser:
+
 ```bash
 npm run start
 ```
-Create a production build:
+
+### Build
+
+Create an optimized production build:
+
 ```bash
 npm run build
 ```
-Run the development build without starting the server:
+
+Create a development-mode build without starting the development server:
+
 ```bash
 npm run dev
 ```
-Linting and Formatting
 
-Run ESLint to check the project for JavaScript problems:
+### Linting and Formatting
+
+Check the project for JavaScript issues with ESLint:
+
 ```bash
 npm run lint
 ```
-Format the project with Prettier:
+
+Format the project files with Prettier:
+
 ```bash
 npm run format
 ```
 
 ## Project Structure
 
-```
+```text
 src/
+├── assets/
+│   └── icons/
+├── util/
+│   ├── geoApifi.js
+│   ├── geoLoc.js
+│   └── searchParameters.js
+├── drawDisplay.js
 ├── index.js
 ├── style.css
-└── template.html
+├── template.html
+└── weatherFetch.js
 ```
 
-## Notes
+## Known Issues and Future Improvements
 
-This repository is intended to be used as a starting point for vanilla JavaScript projects using Webpack.
+- **Geolocation response time:** Reverse geocoding can take a little while to resolve in some circumstances. Adding a loading indicator while the location is being processed would improve the user experience.
