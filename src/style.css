@@ -1,4 +1,17 @@
-/* ===== RESET & GLOBALS ===== */
+/* ===== Design tokens ===== */
+:root {
+  --bg: linear-gradient(rgb(173, 214, 241), rgb(249, 204, 238));
+  --panel: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --accent: #2196f3;
+  --accent-dark: #0b7dda;
+  --radius: 14px;
+  --shadow: 0 2px 10px rgba(30, 41, 59, 0.08);
+}
+
+/* ===== Reset & globals ===== */
 *,
 *::before,
 *::after {
@@ -8,6 +21,15 @@
 }
 
 body {
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.45;
   min-height: 100vh;
 }
 
@@ -15,55 +37,106 @@ img {
   display: block;
   max-width: 100%;
 }
-/* ================ STYLE STARTS HERE ================ */
 
-/* ===== Header of the website ===== */
+/* ===== Header (mobile-first, stacked) ===== */
 header {
-  display: grid;
-  /* 4fr / 1fr = 80% / 20% split of the two bottom rows */
-  grid-template-columns: minmax(0, 4fr) minmax(0, 1fr);
-  grid-template-rows: auto auto auto;
-  gap: 0.5rem 1rem;
-  align-items: center;
-  padding: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
-/* Let the form's children (the fieldsets) become grid items
-   of the header instead of being wrapped in a single box */
+/* Let the form's fieldsets become flex items of the header */
 header > form {
   display: contents;
 }
 
-/* Row 1 – full width */
 .siteName {
-  grid-column: 1 / -1;
-  grid-row: 1;
+  flex: 0 0 100%;
+  font-size: 1.35rem;
+  text-align: center;
 }
 
-/* Rows 2 + 3 – left column */
-.searchBar {
-  grid-column: 1;
-  grid-row: 2 / span 2;
-  align-self: stretch;
+fieldset {
+  border: none;
 }
 
-/* Right column – one slider per row */
-fieldset.switchName:nth-of-type(1) {
-  grid-column: 2;
-  grid-row: 2;
+fieldset legend {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
 }
 
-fieldset.switchName:nth-of-type(2) {
-  grid-column: 2;
-  grid-row: 3;
+/* --- Search bar --- */
+fieldset.searchBar {
+  flex: 0 0 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-/* ===== The switch - the box around the slider ===== */
+fieldset.searchBar legend {
+  width: 100%;
+}
+
+#searchBar {
+  flex: 1 1 150px;
+  padding: 0.65rem 0.9rem;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+#searchBar:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+#submitSearch {
+  padding: 0.65rem 1.2rem;
+  font-size: 1rem;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#submitSearch:hover {
+  background: var(--accent-dark);
+}
+
+/* --- Toggle cards (unit + geolocation) --- */
+header > form > fieldset.switchName {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.5rem 0.25rem 0.45rem;
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+header > form > fieldset.switchName legend {
+  margin-bottom: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* ===== The switch (checkbox slider) ===== */
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 44px;
+  height: 24px;
 }
 
 /* Hide default HTML checkbox */
@@ -73,50 +146,225 @@ fieldset.switchName:nth-of-type(2) {
   height: 0;
 }
 
-/* The slider */
+/* The slider track */
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  inset: 0;
+  background-color: #cbd5e1;
+  transition: 0.3s;
 }
 
-.slider:before {
+/* The knob */
+.slider::before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 16px;
+  width: 16px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  background-color: #fff;
+  transition: 0.3s;
+}
+
+.sliderLable {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 
 input:checked + .slider {
-  background-color: #2196f3;
+  background-color: var(--accent);
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+input:focus-visible + .slider {
+  outline: 2px solid var(--accent-dark);
+  outline-offset: 2px;
 }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+input:checked + .slider::before {
+  transform: translateX(20px);
 }
 
-/* Rounded sliders */
+/* Rounded slider */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 24px;
 }
 
-.slider.round:before {
+.slider.round::before {
   border-radius: 50%;
+}
+
+/* ===== Main display ===== */
+#mainContainer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.display-box {
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.1rem;
+}
+
+/* --- Current conditions card --- */
+#currentTemp {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "loc    icon"
+    "temp   icon"
+    "feels  icon"
+    "wind   wind"
+    "hum    hum"
+    "uv     uv";
+  column-gap: 0.75rem;
+}
+
+#currentTemp #location {
+  grid-area: loc;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+#currentTemp #Temp {
+  grid-area: temp;
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+#currentTemp #Feels\ Like {
+  grid-area: feels;
+  color: var(--muted);
+}
+
+#currentTemp #weatherIcon-container {
+  grid-area: icon;
+  align-self: center;
+}
+
+#currentTemp #windSpeed {
+  grid-area: wind;
+}
+#currentTemp #humidity {
+  grid-area: hum;
+}
+#currentTemp #uvIndex {
+  grid-area: uv;
+}
+
+#currentTemp #windSpeed,
+#currentTemp #humidity,
+#currentTemp #uvIndex {
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* --- Hourly + daily forecast rows --- */
+#nextHoursTemperaturs,
+#nextDayTemperatures {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.nextHourBox,
+.nextDayBox {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.25rem;
+  background: var(--bg);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+#nextHoursTemperaturs #Temp,
+#nextDayTemperatures #Temp {
+  font-weight: 600;
+}
+
+#nextHoursTemperaturs #weatherIcon-container img,
+#nextDayTemperatures #weatherIcon-container img {
+  width: 45px;
+  height: 45px;
+  margin: 0 auto;
+}
+
+#nextDayTemperatures #dayName {
+  font-weight: 600;
+}
+
+/* ==========================================================
+   DESKTOP — horizontal layout
+   ========================================================== */
+@media (min-width: 820px) {
+  header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-areas:
+      "site   site site"
+      "search unit geo";
+    gap: 0.75rem 1rem;
+    align-items: end;
+  }
+
+  .siteName {
+    grid-area: site;
+    text-align: left;
+    font-size: 1.6rem;
+  }
+
+  header > form > fieldset.searchBar {
+    grid-area: search;
+  }
+  header > form > fieldset.switchName:nth-of-type(1) {
+    grid-area: unit;
+  }
+  header > form > fieldset.switchName:nth-of-type(2) {
+    grid-area: geo;
+  }
+
+  /* Side-by-side: current conditions left, forecasts right */
+  #mainContainer {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    grid-template-areas:
+      "current hours"
+      "current days";
+    gap: 1rem;
+  }
+
+  #currentTemp {
+    grid-area: current;
+  }
+  #nextHoursTemperaturs {
+    grid-area: hours;
+  }
+  #nextDayTemperatures {
+    grid-area: days;
+  }
+
+  /* Reflow the stats into one row beside the big icon */
+  #currentTemp {
+    grid-template-columns: 1fr 1fr auto;
+    grid-template-areas:
+      "loc    loc    icon"
+      "temp   temp   icon"
+      "feels  feels  icon"
+      "wind   hum    uv";
+    align-content: start;
+  }
 }
