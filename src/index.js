@@ -56,7 +56,7 @@ unitswitch.addEventListener("change", async (event) => {
 
 geoLocSwitch.addEventListener("change", async (event) => {
   let unit = "metric";
-  if (unitswitch.currentTarget.checked) {
+  if (unitswitch.checked) {
     unit = "us";
   }
   if (event.currentTarget.checked) {
