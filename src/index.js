@@ -15,7 +15,12 @@ const geoLocSwitch = document.querySelector("#geoLoc");
 
 (async () => {
   if (searchInput.value === "") {
-    return;
+    const weatherData = await weatherFetch("metric");
+    let unit = "metric";
+    if (unitswitch.checked) {
+      unit = "us";
+    }
+    drawDisplay(weatherData, unit);
   } else {
     const weatherData = await weatherFetch("metric", searchInput.value);
     let unit = "metric";
