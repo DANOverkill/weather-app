@@ -1,6 +1,7 @@
 /* ===== Design tokens ===== */
 :root {
   --bg: linear-gradient(rgb(173, 214, 241), rgb(249, 204, 238));
+  --chip: #f0f4f8;
   --panel: #ffffff;
   --text: #1e293b;
   --muted: #64748b;
@@ -72,6 +73,7 @@ fieldset legend {
 /* --- Search bar --- */
 fieldset.searchBar {
   flex: 0 0 100%;
+  order: 2;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -112,21 +114,24 @@ fieldset.searchBar legend {
   background: var(--accent-dark);
 }
 
-/* --- Toggle cards (unit + geolocation) --- */
+/* --- Toggle cards (unit + geolocation) ---
+   The fieldset itself is transparent so its <legend> sits above
+   the box (same pattern as the search bar). The visible card is
+   the .switchRow div. */
+/* Fieldset is a plain block with text-align so the <legend> centers
+   reliably (legends don't center properly inside flex fieldsets in
+   Chrome). The box below is an inline-flex, so it centers on the
+   same axis as the legend text. */
 header > form > fieldset.switchName {
-  flex: 1 1 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.5rem 0.25rem 0.45rem;
-  background: var(--panel);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  flex: 1 1 1;
+  order: 3;
+  display: block;
+  text-align: center;
 }
 
 header > form > fieldset.switchName legend {
-  margin-bottom: 0;
+  display: inline-block;
+  margin-bottom: 0.35rem;
   text-align: center;
   line-height: 1.2;
 }
@@ -167,8 +172,22 @@ header > form > fieldset.switchName legend {
   transition: 0.3s;
 }
 
-.sliderLable {
+/* The visible toggle box: left label + toggle + right label
+   (inline-flex so the fieldset's text-align centers it) */
+.switchRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.switchLabel {
   display: inline-block;
+  min-width: 1.75rem;
+  text-align: center;
   font-size: 0.75rem;
   color: var(--muted);
 }
@@ -234,7 +253,7 @@ input:checked + .slider::before {
 
 #currentTemp #Temp {
   grid-area: temp;
-  font-size: 2.75rem;
+  font-size: clamp(1.9rem, 5vw, 2.75rem);
   font-weight: 700;
   line-height: 1.1;
 }
@@ -285,7 +304,7 @@ input:checked + .slider::before {
   align-items: center;
   gap: 0.4rem;
   padding: 0.6rem 0.25rem;
-  background: var(--bg);
+  background: var(--chip);
   border-radius: 10px;
   text-align: center;
   font-size: 0.85rem;
@@ -310,25 +329,27 @@ input:checked + .slider::before {
 /* ==========================================================
    DESKTOP — horizontal layout
    ========================================================== */
-@media (min-width: 820px) {
+@media (min-width: 900px) {
   header {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 3fr 2fr;
     grid-template-areas:
-      "site   site site"
-      "search unit geo";
-    gap: 0.75rem 1rem;
-    align-items: end;
+      "site   site"
+      "search unit"
+      "search geo";
+    gap: 0.35rem 1rem;
+    align-items: start;
   }
 
   .siteName {
     grid-area: site;
-    text-align: left;
+    text-align: center;
     font-size: 1.6rem;
   }
 
   header > form > fieldset.searchBar {
     grid-area: search;
+    order: initial;
   }
   header > form > fieldset.switchName:nth-of-type(1) {
     grid-area: unit;
@@ -336,11 +357,19 @@ input:checked + .slider::before {
   header > form > fieldset.switchName:nth-of-type(2) {
     grid-area: geo;
   }
+  .switchLegend {
+    margin-left: 28%;
+  }
+}
 
-  /* Side-by-side: current conditions left, forecasts right */
+/* ==========================================================
+   WIDE DESKTOP — main panels side by side (only when there
+   is genuinely enough room, so the temp card never squishes)
+   ========================================================== */
+@media (min-width: 900px) {
   #mainContainer {
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    grid-template-columns: minmax(0.5, 2.3fr) minmax(0.5, 1fr);
     grid-template-areas:
       "current hours"
       "current days";
@@ -349,22 +378,27 @@ input:checked + .slider::before {
 
   #currentTemp {
     grid-area: current;
+    min-width: 0;
   }
   #nextHoursTemperaturs {
     grid-area: hours;
+    min-width: 0;
   }
   #nextDayTemperatures {
     grid-area: days;
+    min-width: 0;
   }
 
-  /* Reflow the stats into one row beside the big icon */
+  /* Wind / humidity / UV keep the same stacked look as mobile */
   #currentTemp {
-    grid-template-columns: 1fr 1fr auto;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
     grid-template-areas:
       "loc    loc    icon"
       "temp   temp   icon"
       "feels  feels  icon"
-      "wind   hum    uv";
+      "wind   wind   wind"
+      "hum    hum    hum"
+      "uv     uv     uv";
     align-content: start;
   }
 }

@@ -4,29 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DANOverkill's Weather-App</title>
+    <base target="_blank" />
   </head>
   <body>
     <header>
       <h1 class="siteName">DANOverkill's Weather App</h1>
       <form id="searchForm">
         <fieldset class="switchName">
-          <legend>Choose your prefered unit</legend>
-          <label class="switch" for="unit">
-            <span class="sliderLable">°C</span>
-            <span class="sliderLable">°F</span>
-            <input type="checkbox" id="unit" />
-            <span class="slider round"></span>
-          </label>
+          <legend class="switchLegend">Choose your prefered unit</legend>
+          <div class="switchRow">
+            <span class="switchLabel">°C</span>
+            <label class="switch">
+              <input type="checkbox" id="unit" />
+              <span class="slider round"></span>
+            </label>
+            <span class="switchLabel">°F</span>
+          </div>
         </fieldset>
 
         <fieldset class="switchName">
-          <legend>Turn on Geo Location</legend>
-          <label class="switch" for="geoLoc">
-            <span class="sliderLable">Off</span>
-            <span class="sliderLable">ON</span>
-            <input type="checkbox" id="geoLoc" />
-            <span class="slider round"></span>
-          </label>
+          <legend class="switchLegend">Turn on Geo Location</legend>
+          <div class="switchRow">
+            <span class="switchLabel">Off</span>
+            <label class="switch">
+              <input type="checkbox" id="geoLoc" />
+              <span class="slider round"></span>
+            </label>
+            <span class="switchLabel">On</span>
+          </div>
         </fieldset>
 
         <fieldset class="searchBar" id="searchBarElement">
