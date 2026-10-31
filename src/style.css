@@ -436,8 +436,8 @@ input:checked + .slider::before {
 
 .bat3 {
   width: 35px;
-  top: 12%;
-  right: 20%;
+  top: 14%;
+  right: 17%;
   transform: rotate(-25deg);
 }
 
