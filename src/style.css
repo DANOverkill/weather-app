@@ -402,3 +402,86 @@ input:checked + .slider::before {
     align-content: start;
   }
 }
+
+/* ===== Halloween Bat Decorations ===== */
+
+.batDecorations {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.bat {
+  position: absolute;
+  height: auto;
+}
+
+/* Individual bat positions */
+
+.bat1 {
+  width: 45px;
+  top: 6.5%;
+  left: 25%;
+  transform: rotate(-15deg);
+}
+
+.bat2 {
+  width: 45px;
+  top: 22%;
+  left: 35%;
+  transform: rotate(45px);
+}
+
+.bat3 {
+  width: 35px;
+  top: 12%;
+  right: 20%;
+  transform: rotate(-25deg);
+}
+
+.bat4 {
+  width: 55px;
+  top: 23%;
+  right: 3%;
+  transform: rotate(10deg);
+}
+
+.bat5 {
+  width: 30px;
+  top: 33%;
+  left: 1%;
+  transform: rotate(-45deg);
+}
+
+.bat6 {
+  width: 50px;
+  top: 73%;
+  right: 35%;
+  transform: rotate(-10deg);
+}
+
+/* pumpkin decal */
+.pumpkinDecoration {
+  position: absolute;
+  bottom: 338px;
+  right: 7px;
+  width: 90px;
+  height: auto;
+  pointer-events: none;
+  transform: rotate(-10deg);
+  z-index: 2;
+}
+
+/* leaves banner */
+.fallLeavesBanner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  z-index: -3;
+  opacity: 0.35;
+}

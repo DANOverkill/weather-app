@@ -71,7 +71,6 @@ const drawDisplay = async (data, unit) => {
 
   // Update UI
   mainContainer.innerHTML = `
-        <div id="mainContainer">
       <!-- main section where current temp is displaied -->
       <div class="display-box" id="currentTemp">
         <div id="location">${data.resolvedAddress}</div>
@@ -111,7 +110,6 @@ const drawDisplay = async (data, unit) => {
           <div id="Temp">${data.days[3].tempmin}/${data.days[3].tempmax} ${tempUnitSymbol}</div>
           </div>
         </div>
-      </div>
         `;
 };
 
