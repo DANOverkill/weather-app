@@ -1,3 +1,5 @@
+import pumpkin from "./assets/decorations/pumpkin.png";
+
 const drawDisplay = async (data, unit) => {
   // DOM Cache for main display container
   const mainContainer = document.querySelector("#mainContainer");
@@ -82,6 +84,7 @@ const drawDisplay = async (data, unit) => {
         <div id="windSpeed">Wind Speed: ${data.currentConditions.windspeed} ${speedUnitSymbol}</div>
         <div id="humidity">Humidity: ${data.currentConditions.humidity}</div>
         <div id="uvIndex">UV: ${data.currentConditions.uvindex}</div>
+        <img src=${pumpkin} class="pumpkinDecoration" alt="" />
       </div>
       <!-- extra boxes for future hourly forcast -->
       <div class="display-box" id="nextHoursTemperaturs">

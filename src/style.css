@@ -405,12 +405,12 @@ input:checked + .slider::before {
 
 /* ===== Halloween Bat Decorations ===== */
 
-.batDecorations {
+.halloweenDecorations {
   position: fixed;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  z-index: -1;
+  z-index: 1;
 }
 
 .bat {
@@ -463,10 +463,14 @@ input:checked + .slider::before {
 }
 
 /* pumpkin decal */
+#currentTemp {
+  position: relative;
+}
+
 .pumpkinDecoration {
   position: absolute;
-  bottom: 338px;
-  right: 7px;
+  bottom: 10px;
+  right: 10px;
   width: 90px;
   height: auto;
   pointer-events: none;
