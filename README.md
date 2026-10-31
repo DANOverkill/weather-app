@@ -4,6 +4,11 @@ A weather application built as part of [The Odin Project](https://www.theodinpro
 
 **Live Demo:** [DANOverkill Weather App](https://danoverkill.github.io/weather-app/)
 
+## Halloween Version
+
+This version displays the app with Halloween features.
+The app and it's functionalities all remain the same.
+
 ### APIs Used
 
 - **Visual Crossing Weather API** — Retrieves weather data and forecasts.
