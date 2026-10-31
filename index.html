@@ -1,1 +1,155 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>DANOverkill's Weather-App</title><base target="_blank"/><script defer="defer" src="main.js"></script></head><body><div class="siteNameContainer"><img src="c6a0898001aefe87931d.svg" class="fallLeavesBanner" alt="" aria-hidden="true"/></div><div class="halloweenDecorations" aria-hidden="true"><img src="e5576ad0d84b24edcb22.svg" class="bat bat1" alt=""/> <img src="e5576ad0d84b24edcb22.svg" class="bat bat2" alt=""/> <img src="e5576ad0d84b24edcb22.svg" class="bat bat3" alt=""/> <img src="e5576ad0d84b24edcb22.svg" class="bat bat4" alt=""/> <img src="e5576ad0d84b24edcb22.svg" class="bat bat5" alt=""/> <img src="e5576ad0d84b24edcb22.svg" class="bat bat6" alt=""/></div><header><h1 class="siteName">DANOverkill's Weather App</h1><form id="searchForm"><fieldset class="switchName"><legend class="switchLegend">Choose your prefered unit</legend><div class="switchRow"><span class="switchLabel">°C</span> <label class="switch"><input type="checkbox" id="unit"/> <span class="slider round"></span></label> <span class="switchLabel">°F</span></div></fieldset><fieldset class="switchName"><legend class="switchLegend">Turn on Geo Location</legend><div class="switchRow"><span class="switchLabel">Off</span> <label class="switch"><input type="checkbox" id="geoLoc"/> <span class="slider round"></span></label> <span class="switchLabel">On</span></div></fieldset><fieldset class="searchBar" id="searchBarElement"><legend>Seach your City</legend><input id="searchBar" placeholder="Search..."/> <button type="submit" id="submitSearch" class="button">Submit</button></fieldset></form></header><img src="eaf8a3393a9935a270e5.png" class="pumpkinDecoration" alt=""/><div id="mainContainer"><div class="display-box" id="currentTemp"><div id="location">--</div><div id="Temp">--</div><div id="Feels Like">--</div><div id="tempUnit">--</div><div id="weatherIcon-container"><img src="#" id="weatherIcon" class="icons"/></div><div id="windSpeed">--</div><div id="humidity">--</div><div id="uvIndex">--</div></div><div class="display-box" id="nextHoursTemperaturs"><div class="nextHourBox" id="nextHour-01"><div id="Temp">--</div><div id="weatherIcon-container"><img src="#" id="weatherIcon" class="icons"/></div></div><div class="nextHourBox" id="nextHour-02"><div id="Temp">--</div><div id="weatherIcon-container"><img src="#" id="weatherIcon" class="icons"/></div></div><div class="nextHourBox" id="nextHour-03"><div id="Temp">--</div><div id="weatherIcon-container"><img src="#" id="weatherIcon" class="icons"/></div></div><div class="nextHourBox" id="nextHour-04"><div id="Temp">--</div><div id="weatherIcon-container"><img src="#" id="weatherIcon" class="icons"/></div></div><div class="nextHourBox" id="nextHour-05"><div id="Temp">--</div><div id="weatherIcon-container"><img src="#" id="weatherIcon" class="icons"/></div></div></div><div class="display-box" id="nextDayTemperatures"><div class="nextDayBox" id="nextDay-01"><div id="Temp">--</div><div id="weatherIcon-container"><img src="#" id="weatherIcon" class="icons"/></div></div><div class="nextDayBox" id="nextDay-02"><div id="Temp">--</div><div id="weatherIcon-container"><img src="#" id="weatherIcon" class="icons"/></div></div><div class="nextDayBox" id="nextDay-03"><div id="Temp">--</div><div id="weatherIcon-container"><img src="#" id="weatherIcon" class="icons"/></div></div></div></div></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DANOverkill's Weather-App</title>
+    <base target="_blank" />
+  <script defer src="main.js"></script></head>
+  <body>
+    <div class="siteNameContainer">
+      <img
+        src="c6a0898001aefe87931d.svg"
+        class="fallLeavesBanner"
+        alt=""
+        aria-hidden="true"
+      />
+    </div>
+    <div class="halloweenDecorations" aria-hidden="true">
+      <img
+        src="e5576ad0d84b24edcb22.svg"
+        class="bat bat1"
+        alt=""
+      />
+      <img
+        src="e5576ad0d84b24edcb22.svg"
+        class="bat bat2"
+        alt=""
+      />
+      <img
+        src="e5576ad0d84b24edcb22.svg"
+        class="bat bat3"
+        alt=""
+      />
+      <img
+        src="e5576ad0d84b24edcb22.svg"
+        class="bat bat4"
+        alt=""
+      />
+      <img
+        src="e5576ad0d84b24edcb22.svg"
+        class="bat bat5"
+        alt=""
+      />
+      <img
+        src="e5576ad0d84b24edcb22.svg"
+        class="bat bat6"
+        alt=""
+      />
+    </div>
+
+    <header>
+      <h1 class="siteName">DANOverkill's Weather App</h1>
+      <form id="searchForm">
+        <fieldset class="switchName">
+          <legend class="switchLegend">Choose your prefered unit</legend>
+          <div class="switchRow">
+            <span class="switchLabel">°C</span>
+            <label class="switch">
+              <input type="checkbox" id="unit" />
+              <span class="slider round"></span>
+            </label>
+            <span class="switchLabel">°F</span>
+          </div>
+        </fieldset>
+
+        <fieldset class="switchName">
+          <legend class="switchLegend">Turn on Geo Location</legend>
+          <div class="switchRow">
+            <span class="switchLabel">Off</span>
+            <label class="switch">
+              <input type="checkbox" id="geoLoc" />
+              <span class="slider round"></span>
+            </label>
+            <span class="switchLabel">On</span>
+          </div>
+        </fieldset>
+
+        <fieldset class="searchBar" id="searchBarElement">
+          <legend>Seach your City</legend>
+          <input type="text" id="searchBar" placeholder="Search..." />
+          <button type="submit" id="submitSearch" class="button">Submit</button>
+        </fieldset>
+      </form>
+    </header>
+    <div id="mainContainer">
+      <!-- main section where current temp is displaied -->
+      <div class="display-box" id="currentTemp">
+        <div id="location">--</div>
+        <div id="Temp">--</div>
+        <div id="Feels Like">--</div>
+        <div id="tempUnit">--</div>
+        <div id="weatherIcon-container">
+          <img src="#" id="weatherIcon" class="icons" />
+        </div>
+        <div id="windSpeed">--</div>
+        <div id="humidity">--</div>
+        <div id="uvIndex">--</div>
+      </div>
+      <!-- extra boxes for future hourly forcast -->
+      <div class="display-box" id="nextHoursTemperaturs">
+        <div class="nextHourBox" id="nextHour-01">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+        <div class="nextHourBox" id="nextHour-02">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+        <div class="nextHourBox" id="nextHour-03">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+        <div class="nextHourBox" id="nextHour-04">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+        <div class="nextHourBox" id="nextHour-05">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+      </div>
+      <!-- extra boxes for future daily forcast   -->
+      <div class="display-box" id="nextDayTemperatures">
+        <div class="nextDayBox" id="nextDay-01">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+        <div class="nextDayBox" id="nextDay-02">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+        <div class="nextDayBox" id="nextDay-03">
+          <div id="Temp">--</div>
+          <div id="weatherIcon-container">
+            <img src="#" id="weatherIcon" class="icons" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
