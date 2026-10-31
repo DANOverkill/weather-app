@@ -1,13 +1,13 @@
 /* ===== Design tokens ===== */
 :root {
-  --bg: linear-gradient(rgb(173, 214, 241), rgb(249, 204, 238));
+  --bg: linear-gradient(rgb(241, 201, 173), rgb(240, 249, 204));
   --chip: #f0f4f8;
   --panel: #ffffff;
-  --text: #1e293b;
-  --muted: #64748b;
+  --text: #523b2a;
+  --muted: #8b7e64;
   --line: #e2e8f0;
-  --accent: #2196f3;
-  --accent-dark: #0b7dda;
+  --accent: #f35921;
+  --accent-dark: #da3f0b;
   --radius: 14px;
   --shadow: 0 2px 10px rgba(30, 41, 59, 0.08);
 }
