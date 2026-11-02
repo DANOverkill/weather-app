@@ -85,3 +85,4 @@ src/
 ## Known Issues and Future Improvements
 
 - **Geolocation response time:** Reverse geocoding can take a little while to resolve in some circumstances. Adding a loading indicator while the location is being processed would improve the user experience.
+- **Page Location Retention:** We currently have a page that always defaults to the capital of Canada (Ottawa). We need to add a choose your prefered City that takes a user imput or uses the geolocation result to change the default city in the app. That way after the first use, the page will load either the last looked up city, or the user's default choice instead of constantly switching back to Ottawa
